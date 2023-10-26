@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Book</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{style.css}">
+</head>
+<body>
+
+<h1>Edit Book</h1>
+<button type="button" onclick="location.href='management'">Return to Management</button>
+<p></p>
+<h3><span>BookID: </span><span th:text="${toBeEditedBook.getID()}"></span></h3>
+
+<form action="#" th:action="@{/editBook}" th:object="${toBeEditedBook}" method="post">
+    <!--Request Paramter for BookID-->
+    <input type="hidden" name="bookID" th:value="*{getID()}"/>
+
+    <table>
+        <tr>
+            <th> Field </th>
+            <th> Old Value </th>
+            <th> New Value </th>
+        </tr>        
+        <tr>
+            <td>Title</td>
+            <td><span th:text="*{title}"></span></td>
+            <td><input type="text" th:field="*{title}" required></td>
+        </tr>
+        <tr>
+            <td>Version</td>
+            <td><span th:text="*{version}"></span></td>
+            <td><input type="text" th:field="*{version}" required></td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" value="Submit"/>
+    </p>
+</form>
+
+</body>
+</html>

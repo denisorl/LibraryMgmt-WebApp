@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Remove Book</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{style.css}">
+</head>
+<body>
+
+<h1>Remove Book</h1>
+<button type="button" onclick="location.href='management'">Return to Management</button>
+<p></p>
+
+<form action="#" th:action="@{/removeBook}" th:object="${toBeRemovedBook}" method="post">
+    <!--Request Paramter for BookID-->
+    <input type="hidden" name="bookID" th:value="*{getID()}"/>
+    
+    <table>
+        <tr>
+            <th> Field </th>
+            <th> Value </th>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td><span th:text="*{title}"></span>
+        </tr>
+        <tr>
+            <td>Version</td>
+            <td><span th:text="*{version}"></td>
+        </tr>
+    </table>
+    <p class="warningMessage">This action cannot be undone!</p>
+    <p>
+        <input type="submit" value="Submit"/>
+    </p>
+</form>
+
+</body>
+</html>
