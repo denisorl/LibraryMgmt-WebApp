@@ -12,18 +12,22 @@
 
         <h1>List of Books</h1>
 
-        <p>
-            <button type="button" onclick="location.href = 'addBook'">Add new Book</button>
-        </p>
+        <!--Top Buttons-->
+        <div>
+            <button type="button" onclick="location.href = '/'">Return to Landing Page</button>
+            <button style="float: right;" type="button" onclick="location.href = 'addBook'">Add new Book</button>
+        </div>
 
-        <form th:action="@{/management}" method="get">
-            <input type="text" name="keyword" th:value="${keyword}"  placeholder="Search by ID or Title" size="50" >
-            <button type="submit" class="btn btn-info" >Search</button>
-            <button type="submit" class="btn btn-info" >Reset</button>
-        </form>
+        <!--Search Bar-->
+        <div>
+            <form th:action="@{/management}" method="get">
+                <input type="text" name="keyword" th:value="${keyword}"  placeholder="Search by ID or Title" size="50" >
+                <button type="submit" class="btn btn-info" >Search</button>
+                <button type="submit" class="btn btn-info" >Reset</button>
+            </form>            
+        </div>
 
-        <p></p>
-
+        <!--list of books-->
         <table>
             <thead>
                 <tr>

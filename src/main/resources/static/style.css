@@ -17,3 +17,15 @@ tr:nth-child(even) {
 .warningMessage {
     color:orangered;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.landing-page-button {
+    width: 60%;
+    padding: 2%;
+}
