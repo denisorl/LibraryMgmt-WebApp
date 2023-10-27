@@ -19,9 +19,6 @@ public class BookController {
    public BookController(IBookService bookService){
       this.bookService = bookService;
 
-      //fill with some sample data
-      this.bookService.addBook(new Book("Hobbit", "1960"));
-      this.bookService.addBook(new Book("Herr der Ringe", "1"));
    }
 
    //Helper function for borrowing and returning books

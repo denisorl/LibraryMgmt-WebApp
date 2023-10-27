@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface BookRepository extends CrudRepository<Book, Long>{
 
     //Query for finding books by a keyword
-    @Query(value = "select * from book b where b.id like %:keyword% or b.title like %:keyword%", nativeQuery = true)
+    @Query(value = "select * from books b where b.id like %:keyword% or b.title like %:keyword%", nativeQuery = true)
     List<Book> findByKeyword(@Param("keyword") String keyword);
     
 }
