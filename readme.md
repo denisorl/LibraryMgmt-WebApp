@@ -2,6 +2,7 @@
 Simple Web App for Library Management using Spring Boot.
 
 Projects is used for learning different aspects of the Spring Boot Framework.
+The goal was not to do web design, so pages have a functional look.
 
 ## Dependencies
 - Java 17 or later
