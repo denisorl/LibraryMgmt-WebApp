@@ -24,6 +24,16 @@ public class BookController {
       this.bookService.addBook(new Book("Herr der Ringe", "1"));
    }
 
+   //Helper function for borrowing and returning books
+   private void setBorrowedStatusOfBook(Long bookID, boolean borrowedStatus){
+      //get book from repository and change its values
+      Book book = bookService.getBook(bookID);
+      book.setBorrowed(borrowedStatus);
+
+      //save changes back to repository
+      bookService.addBook(book);
+   }
+
    @GetMapping("/management")
    public String showManagement(Model model, String keyword){
 
@@ -106,12 +116,7 @@ public class BookController {
 
    @PostMapping("/borrowBook")
    public String processBorrowBook(@RequestParam(name="bookID", required = true) Long bookID){
-      //get book from repository and change its values
-      Book toBeBorrowedBook = bookService.getBook(bookID);
-      toBeBorrowedBook.setBorrowed(true);
-
-      //save changes back to repository
-      bookService.addBook(toBeBorrowedBook);
+      setBorrowedStatusOfBook(bookID, true);
 
       return "redirect:";
    }
@@ -128,12 +133,7 @@ public class BookController {
 
    @PostMapping("/returnBook")
    public String processReturnBook(@RequestParam(name="bookID", required = true) Long bookID){
-      //get book from repository and change its values
-      Book toBeReturnedBook = bookService.getBook(bookID);
-      toBeReturnedBook.setBorrowed(true);
-
-      //save changes back to repository
-      bookService.addBook(toBeReturnedBook);
+      setBorrowedStatusOfBook(bookID, false);
 
       return "redirect:";
    }
