@@ -93,4 +93,23 @@ public class BookController {
 
       return "redirect:management";
    }
+
+   @GetMapping("/borrowBook")
+   public String showBorrowBook(Model model, String keyword){
+      //get all books by the given keyword
+      List<Book> bookList = bookService.getBooksByKeyword(keyword);
+      //add them to the model for display
+      model.addAttribute("bookList", bookList);
+
+      return "borrowBook";
+   }
+
+   @PostMapping("/borrowBook")
+   public String processBorrowBook(@RequestParam(name="bookID", required = true) Long bookID){
+      Book toBeBorrowedBook = bookService.getBook(bookID);
+      toBeBorrowedBook.setBorrowed(true);
+      bookService.addBook(toBeBorrowedBook);
+
+      return "redirect:";
+   }
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Borrow a Book</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" th:href="@{style.css}">
+    </head>
+
+    <body>
+
+        <h1>Borrow a Book</h1>
+
+        <!--Top Buttons-->
+        <div>
+            <button type="button" onclick="location.href = '/'">Return to Landing Page</button>
+        </div>
+
+        <!--Search Bar-->
+        <div class="center">
+            <form th:action="@{/borrowBook}" method="get">
+                <input type="text" name="keyword" th:value="${keyword}"  placeholder="Search by ID or Title" size="50" >
+                <button type="submit" class="btn btn-info" >Search</button>
+            </form>            
+        </div>
+
+        <!--list of books-->
+        <table>
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Title </th>
+                    <th> Version </th>
+                    <th> Borrowed </th>
+                    <th> Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${bookList.empty}">
+                    <td colspan="5" style="text-align: center;"> No Books found </td>
+                </tr>
+                <tr th:each="book : ${bookList}">
+                    <td><span th:text="${book.getID()}"> ID </span></td>
+                    <td><span th:text="${book.getTitle()}"> Title </span></td>
+                    <td><span th:text="${book.getVersion()}"> Version </span></td>
+                    <td><span th:text="${book.getBorrowed}"> Borrowed </span></td>
+                    <td th:if="${book.getBorrowed() == false}" style="width:6%">
+                        <form style="float:left" action="#" th:action="@{/borrowBook}" method="post">
+                            <input type="hidden" name="bookID" th:value="${book.getID()}"/>
+                            <button>borrow</button>
+                        </form>
+                    </td>
+                    <td th:unless="${book.getBorrowed() == false}">
+                        <span>unavailable</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
