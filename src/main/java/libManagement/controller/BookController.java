@@ -106,9 +106,34 @@ public class BookController {
 
    @PostMapping("/borrowBook")
    public String processBorrowBook(@RequestParam(name="bookID", required = true) Long bookID){
+      //get book from repository and change its values
       Book toBeBorrowedBook = bookService.getBook(bookID);
       toBeBorrowedBook.setBorrowed(true);
+
+      //save changes back to repository
       bookService.addBook(toBeBorrowedBook);
+
+      return "redirect:";
+   }
+
+   @GetMapping("/returnBook")
+   public String showReturnBook(Model model, String keyword){
+      //get all books by the given keyword
+      List<Book> bookList = bookService.getBooksByKeyword(keyword);
+      //add them to the model for display
+      model.addAttribute("bookList", bookList);
+
+      return "returnBook";
+   }
+
+   @PostMapping("/returnBook")
+   public String processReturnBook(@RequestParam(name="bookID", required = true) Long bookID){
+      //get book from repository and change its values
+      Book toBeReturnedBook = bookService.getBook(bookID);
+      toBeReturnedBook.setBorrowed(true);
+
+      //save changes back to repository
+      bookService.addBook(toBeReturnedBook);
 
       return "redirect:";
    }
