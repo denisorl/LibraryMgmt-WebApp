@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>libManagement</artifactId>
+	<artifactId>lib-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>libManagement</name>
 	<description>Learning project for Spring Boot</description>
@@ -39,8 +39,8 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-		<scope>runtime</scope>
-    </dependency>
+			<scope>runtime</scope>
+    	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
